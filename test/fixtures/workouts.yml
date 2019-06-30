@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-06-30
+  set: MyString
+  heavy_bag_minutes: MyString
+  bench_press_lbs: MyString
+  bench_press_reps: MyString
+  arm_curl_lbs: MyString
+  arm_curl_reps: MyString
+  leg_curl_lbs: MyString
+  leg_curl_reps: MyString
+  leg_curl_laying_lbs: MyString
+  leg_curl_laying_reps: MyString
+
+two:
+  date: 2019-06-30
+  set: MyString
+  heavy_bag_minutes: MyString
+  bench_press_lbs: MyString
+  bench_press_reps: MyString
+  arm_curl_lbs: MyString
+  arm_curl_reps: MyString
+  leg_curl_lbs: MyString
+  leg_curl_reps: MyString
+  leg_curl_laying_lbs: MyString
+  leg_curl_laying_reps: MyString

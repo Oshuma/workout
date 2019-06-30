@@ -8,10 +8,14 @@ class CreateWorkouts < ActiveRecord::Migration[5.2]
       t.string :bench_press_reps
       t.string :arm_curl_lbs
       t.string :arm_curl_reps
+      t.string :dumbbell_press_lbs
+      t.string :dumbbell_press_reps
+      t.string :chest_fly_lbs
+      t.string :chest_fly_reps
+      t.string :leg_ext_lbs
+      t.string :leg_ext_reps
       t.string :leg_curl_lbs
       t.string :leg_curl_reps
-      t.string :leg_curl_laying_lbs
-      t.string :leg_curl_laying_reps
 
       t.timestamps
     end

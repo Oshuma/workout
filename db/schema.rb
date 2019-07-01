@@ -10,25 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_30_014624) do
+ActiveRecord::Schema.define(version: 2019_06_30_233234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "routines", force: :cascade do |t|
+    t.bigint "workout_set_id"
+    t.string "name"
+    t.string "lbs"
+    t.string "reps"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workout_set_id"], name: "index_routines_on_workout_set_id"
+  end
+
+  create_table "workout_sets", force: :cascade do |t|
+    t.bigint "workout_id"
+    t.string "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workout_id"], name: "index_workout_sets_on_workout_id"
+  end
+
   create_table "workouts", force: :cascade do |t|
     t.date "date"
-    t.string "set"
-    t.string "heavy_bag_minutes"
-    t.string "bench_press_lbs"
-    t.string "bench_press_reps"
-    t.string "arm_curl_lbs"
-    t.string "arm_curl_reps"
-    t.string "leg_curl_lbs"
-    t.string "leg_curl_reps"
-    t.string "leg_curl_laying_lbs"
-    t.string "leg_curl_laying_reps"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "routines", "workout_sets"
+  add_foreign_key "workout_sets", "workouts"
 end

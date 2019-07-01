@@ -3,39 +3,22 @@
     <tr>
       <th scope="col">Date</th>
       <th scope="col">Set</th>
-      <th scope="col">Heavy Bag Minutes</th>
-      <th scope="col">Bench Press lbs</th>
-      <th scope="col">Bench Press Reps</th>
-      <th scope="col">Arm Curl lbs</th>
-      <th scope="col">Arm Curl Reps</th>
-      <th scope="col">Dumbbell Press lbs</th>
-      <th scope="col">Dumbbell Press Reps</th>
-      <th scope="col">Chest Fly lbs</th>
-      <th scope="col">Chest Fly Reps</th>
-      <th scope="col">Leg Ext lbs</th>
-      <th scope="col">Leg Ext Reps</th>
-      <th scope="col">Leg Curl lbs</th>
-      <th scope="col">Leg Curl Reps</th>
     </tr>
   </thead>
 
   <tbody>
     <% @workouts.each do |workout| %>
-      <th scope="col"><%= workout.date %></th>
-      <td><%= workout.set %></td>
-      <td><%= workout.heavy_bag_minutes %></td>
-      <td><%= workout.bench_press_lbs %></td>
-      <td><%= workout.bench_press_reps %></td>
-      <td><%= workout.arm_curl_lbs %></td>
-      <td><%= workout.arm_curl_reps %></td>
-      <td><%= workout.dumbbell_press_lbs %></td>
-      <td><%= workout.dumbbell_press_reps %></td>
-      <td><%= workout.chest_fly_lbs %></td>
-      <td><%= workout.chest_fly_reps %></td>
-      <td><%= workout.leg_ext_lbs %></td>
-      <td><%= workout.leg_ext_reps %></td>
-      <td><%= workout.leg_curl_lbs %></td>
-      <td><%= workout.leg_curl_reps %></td>
+      <tr>
+        <th scope="col"><%= workout.date %></th>
+        <% workout.workout_sets.each do |workout_set| %>
+          <th scope="col"><%= workout_set.number %></th>
+          <% workout_set.routines.each do |routine| %>
+            <td><%= routine.name %></td>
+            <td><%= routine.lbs %></td>
+            <td><%= routine.reps %></td>
+          <% end %>
+        <% end %>
+      </tr>
     <% end %>
   </tbody>
 </table>

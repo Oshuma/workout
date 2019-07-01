@@ -14,7 +14,29 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <%= link_to('Workout', root_path, class: 'navbar-brand') %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item <%= 'active' if current_page?(import_workouts_path) %>">
+            <%= link_to('Import', import_workouts_path, class: 'nav-link') %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <div class="container">
+      <% flash.each do |type, msg| %>
+        <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
+          <%= msg %>
+          <button class="close" data-dismiss="alert">x</button>
+        </div>
+      <% end %> 
+
       <%= yield %>
     </div>
   </body>

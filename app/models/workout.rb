@@ -4,4 +4,5 @@ class Workout < ApplicationRecord
   has_many :workout_sets
 
   validates :date, presence: true
+  validates :set, presence: true
 end

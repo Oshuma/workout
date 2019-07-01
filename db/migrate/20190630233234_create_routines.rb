@@ -5,6 +5,7 @@ class CreateRoutines < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :lbs
       t.string :reps
+      t.string :minutes
 
       t.timestamps
     end

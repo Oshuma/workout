@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_06_30_233234) do
     t.string "name"
     t.string "lbs"
     t.string "reps"
+    t.string "minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["workout_set_id"], name: "index_routines_on_workout_set_id"

@@ -10,19 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_30_233234) do
+ActiveRecord::Schema.define(version: 2019_07_01_172554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "routine_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "routines", force: :cascade do |t|
     t.bigint "workout_set_id"
-    t.string "name"
+    t.bigint "routine_type_id"
     t.string "lbs"
     t.string "reps"
     t.string "minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["routine_type_id"], name: "index_routines_on_routine_type_id"
     t.index ["workout_set_id"], name: "index_routines_on_workout_set_id"
   end
 
@@ -40,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_06_30_233234) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "routines", "routine_types"
   add_foreign_key "routines", "workout_sets"
   add_foreign_key "workout_sets", "workouts"
 end

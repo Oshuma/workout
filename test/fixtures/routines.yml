@@ -2,12 +2,14 @@
 
 one:
   workout_set: one
-  name: MyString
+  routine_type: one
   lbs: MyString
   reps: MyString
+  minutes: MyString
 
 two:
   workout_set: two
-  name: MyString
+  routine_type: two
   lbs: MyString
   reps: MyString
+  minutes: MyString

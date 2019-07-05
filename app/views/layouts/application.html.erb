@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Workouts</title>
+    <title>Workout</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
       <%= link_to('Workout', root_path, class: 'navbar-brand') %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
@@ -22,20 +22,20 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item <%= 'active' if current_page?(import_workouts_path) %>">
-            <%= link_to('Import', import_workouts_path, class: 'nav-link') %>
+          <li class="nav-item <%= 'active' if current_page?(new_workout_path) %>">
+            <%= link_to('Start', new_workout_path, class: 'nav-link') %>
           </li>
         </ul>
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
       <% flash.each do |type, msg| %>
         <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
           <%= msg %>
           <button class="close" data-dismiss="alert">x</button>
         </div>
-      <% end %> 
+      <% end %>
 
       <%= yield %>
     </div>

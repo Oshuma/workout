@@ -1,0 +1,71 @@
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to('Workouts', workouts_path) %></li>
+    <li class="breadcrumb-item active"><%= @workout.date %></li>
+  </ol>
+</nav>
+
+<%= form_for(@routine) do |f| %>
+  <%= f.hidden_field(:workout_set_id) %>
+
+  <% @workout.workout_sets.each do |workout_set| %>
+    <div class="row">
+      <h5 class="col">Set <%= workout_set.number %></h5>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">lbs</th>
+            <th scope="col">Reps</th>
+            <th scope="col">Mins</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% workout_set.routines.each do |routine| %>
+            <tr>
+              <td><%= routine.routine_type.name %></td>
+              <td><%= routine.lbs %></td>
+              <td><%= routine.reps %></td>
+              <td><%= routine.minutes %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="input-group col mb-3">
+      <%= f.select(:routine_type_id,
+                   options_from_collection_for_select(@routine_types, :id, :name, params[:routine_type_id]),
+                   {prompt: '-- Routine Type --'},
+                   {class: 'custom-select'}) %>
+
+      <div class="input-group-append">
+        <%= link_to('+', new_routine_type_path(workout_id: @workout.id), data: { toggle: 'modal', target: '#new-routine-type-modal' }, remote: true, class: 'btn btn-primary') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <%= f.number_field(:lbs, placeholder: 'lbs', class: 'form-control') %>
+    </div>
+    <div class="form-group col">
+      <%= f.number_field(:reps, placeholder: 'reps', class: 'form-control') %>
+    </div>
+    <div class="form-group col">
+      <%= f.number_field(:minutes, placeholder: 'minutes', class: 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit('Log Routine', class: 'btn btn-primary') %>
+    <%= f.submit('Log & Start New Set', name: 'create_set', class: 'btn btn-info') %>
+  </div>
+<% end %>
+
+<div id="new-routine-type-modal" class="modal fade" tabindex="-1" role="dialog"></div>

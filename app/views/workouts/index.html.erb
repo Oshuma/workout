@@ -2,22 +2,13 @@
   <thead>
     <tr>
       <th scope="col">Date</th>
-      <th scope="col">Set</th>
     </tr>
   </thead>
 
   <tbody>
     <% @workouts.each do |workout| %>
       <tr>
-        <th scope="col"><%= workout.date %></th>
-        <% workout.workout_sets.each do |workout_set| %>
-          <th scope="col"><%= workout_set.number %></th>
-          <% workout_set.routines.each do |routine| %>
-            <td><%= routine.name %></td>
-            <td><%= routine.lbs %></td>
-            <td><%= routine.reps %></td>
-          <% end %>
-        <% end %>
+        <th scope="col"><%= link_to(workout.date, workout) %></th>
       </tr>
     <% end %>
   </tbody>

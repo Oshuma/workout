@@ -4,18 +4,31 @@ class WorkoutsController < ApplicationController
     @workouts = Workout.order(date: :asc).page(params[:page])
   end
 
-  def import
+  def new
+    @workout = Workout.new
   end
 
-  def upload
-    unless params[:csv_file].present?
-      return redirect_to(import_workouts_path, alert: 'Must provide a .csv file.')
+  def create
+    @workout = Workout.new(workout_params)
+
+    if @workout.save
+      redirect_to(workout_path(@workout))
+    else
+      redirect_to(new_workout_path, alert: 'Could not start routine.')
     end
+  end
 
-    FileUtils.cp(params[:csv_file].path, Workout::IMPORT_TMP_FILE)
-    WorkoutImportJob.perform_later(Workout::IMPORT_TMP_FILE)
+  def show
+    @routine_types = RoutineType.order(name: :asc)
+    @workout = Workout.find(params[:id])
+    @workout_set = @workout.workout_sets.last
+    @routine = @workout_set.routines.new
+  end
 
-    redirect_to root_path, notice: 'Importer running.'
+  private
+
+  def workout_params
+    params.require(:workout).permit(:date)
   end
 
 end

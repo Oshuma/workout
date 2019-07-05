@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workout_set: one
+  routine_type: one
+  lbs: MyString
+  reps: MyString
+  minutes: MyString
+
+two:
+  workout_set: two
+  routine_type: two
+  lbs: MyString
+  reps: MyString
+  minutes: MyString

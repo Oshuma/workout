@@ -2,8 +2,7 @@
 Rails.application.routes.draw do
   root 'workouts#index'
 
-  resources :workouts do
-    get :import, on: :collection
-    post :upload, on: :collection
-  end
+  resources :routine_types
+  resources :routines
+  resources :workouts
 end

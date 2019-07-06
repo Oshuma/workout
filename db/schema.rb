@@ -22,23 +22,16 @@ ActiveRecord::Schema.define(version: 2019_07_03_012619) do
   end
 
   create_table "routines", force: :cascade do |t|
-    t.bigint "workout_set_id"
+    t.bigint "workout_id"
     t.bigint "routine_type_id"
+    t.integer "set_number"
     t.string "lbs"
     t.string "reps"
     t.string "minutes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["routine_type_id"], name: "index_routines_on_routine_type_id"
-    t.index ["workout_set_id"], name: "index_routines_on_workout_set_id"
-  end
-
-  create_table "workout_sets", force: :cascade do |t|
-    t.bigint "workout_id"
-    t.string "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["workout_id"], name: "index_workout_sets_on_workout_id"
+    t.index ["workout_id"], name: "index_routines_on_workout_id"
   end
 
   create_table "workouts", force: :cascade do |t|
@@ -48,6 +41,5 @@ ActiveRecord::Schema.define(version: 2019_07_03_012619) do
   end
 
   add_foreign_key "routines", "routine_types"
-  add_foreign_key "routines", "workout_sets"
-  add_foreign_key "workout_sets", "workouts"
+  add_foreign_key "routines", "workouts"
 end

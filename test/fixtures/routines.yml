@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  workout_set: one
+  workout: one
   routine_type: one
   lbs:
   reps:
   minutes: 3
 
 two:
-  workout_set: two
+  workout: two
   routine_type: two
   lbs: 45
   reps: 10

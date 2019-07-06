@@ -5,38 +5,40 @@
   </ol>
 </nav>
 
-<%= form_for(@routine) do |f| %>
-  <%= f.hidden_field(:workout_set_id) %>
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Set</th>
+        <th scope="col">Type</th>
+        <th scope="col">lbs</th>
+        <th scope="col">Reps</th>
+        <th scope="col">Mins</th>
+      </tr>
+    </thead>
 
-  <div class="table-responsive">
-    <table class="table table-sm">
-      <thead class="thead-light">
+    <tbody>
+      <% @workout.routines.each do |routine| %>
         <tr>
-          <th scope="col">Set</th>
-          <th scope="col">Type</th>
-          <th scope="col">lbs</th>
-          <th scope="col">Reps</th>
-          <th scope="col">Mins</th>
+          <td><%= routine.set_number %></td>
+          <td><%= routine.routine_type.name %></td>
+          <td><%= routine.lbs %></td>
+          <td><%= routine.reps %></td>
+          <td><%= routine.minutes %></td>
         </tr>
-      </thead>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-      <tbody>
-        <% @workout_sets.each do |workout_set| %>
-          <% workout_set.routines.each do |routine| %>
-            <tr>
-              <td><%= workout_set.number %></td>
-              <td><%= routine.routine_type.name %></td>
-              <td><%= routine.lbs %></td>
-              <td><%= routine.reps %></td>
-              <td><%= routine.minutes %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<%= form_for(@workout.routines.new) do |f| %>
+  <%= f.hidden_field(:workout_id) %>
 
-  <div class="row">
+  <div class="form-row">
+    <div class="form-group col-2">
+      <%= f.number_field(:set_number, placeholder: 'set', class: 'form-control') %>
+    </div>
+
     <div class="input-group col mb-3">
       <%= f.select(:routine_type_id,
                    options_from_collection_for_select(@routine_types, :id, :name, params[:routine_type_id]),
@@ -63,8 +65,6 @@
 
   <div class="form-group">
     <%= f.submit('Log', class: 'btn btn-success') %>
-    <%= f.submit('Log & New Set', name: 'create_set', class: 'btn btn-light') %>
-    <%= link_to('New Set', workout_workout_sets_path(@workout), method: :post, class: 'btn btn-light') %>
   </div>
 <% end %>
 

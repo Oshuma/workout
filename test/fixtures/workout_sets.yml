@@ -2,8 +2,8 @@
 
 one:
   workout: one
-  number: MyString
+  number: "1"
 
 two:
   workout: two
-  number: MyString
+  number: "2"

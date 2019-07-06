@@ -10,7 +10,7 @@ class RoutinesController < ApplicationController
 
       redirect_to workout_path(@routine.workout)
     else
-      redirect_back(fallback_location: root_path, alert: 'Could not save routine.')
+      redirect_back(fallback_location: root_path, alert: @routine.errors.full_messages.to_sentence)
     end
   end
 

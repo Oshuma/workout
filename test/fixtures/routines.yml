@@ -3,13 +3,13 @@
 one:
   workout_set: one
   routine_type: one
-  lbs: MyString
-  reps: MyString
-  minutes: MyString
+  lbs:
+  reps:
+  minutes: 3
 
 two:
   workout_set: two
   routine_type: two
-  lbs: MyString
-  reps: MyString
-  minutes: MyString
+  lbs: 45
+  reps: 10
+  minutes:

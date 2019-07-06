@@ -21,7 +21,8 @@ class WorkoutsController < ApplicationController
   def show
     @routine_types = RoutineType.order(name: :asc)
     @workout = Workout.find(params[:id])
-    @workout_set = @workout.workout_sets.last
+    @workout_sets = @workout.workout_sets.order(number: :asc)
+    @workout_set = @workout_sets.last
     @routine = @workout_set.routines.new
   end
 

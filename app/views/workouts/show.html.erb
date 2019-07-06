@@ -8,34 +8,33 @@
 <%= form_for(@routine) do |f| %>
   <%= f.hidden_field(:workout_set_id) %>
 
-  <% @workout.workout_sets.each do |workout_set| %>
-    <div class="row">
-      <h5 class="col">Set <%= workout_set.number %></h5>
-    </div>
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Set</th>
+          <th scope="col">Type</th>
+          <th scope="col">lbs</th>
+          <th scope="col">Reps</th>
+          <th scope="col">Mins</th>
+        </tr>
+      </thead>
 
-    <div class="table-responsive">
-      <table class="table table-sm">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Type</th>
-            <th scope="col">lbs</th>
-            <th scope="col">Reps</th>
-            <th scope="col">Mins</th>
-          </tr>
-        </thead>
-        <tbody>
+      <tbody>
+        <% @workout_sets.each do |workout_set| %>
           <% workout_set.routines.each do |routine| %>
             <tr>
+              <td><%= workout_set.number %></td>
               <td><%= routine.routine_type.name %></td>
               <td><%= routine.lbs %></td>
               <td><%= routine.reps %></td>
               <td><%= routine.minutes %></td>
             </tr>
           <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="row">
     <div class="input-group col mb-3">

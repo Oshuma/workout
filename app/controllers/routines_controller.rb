@@ -4,7 +4,11 @@ class RoutinesController < ApplicationController
     @routine = Routine.new(routine_params)
 
     if @routine.save
-      redirect_to workout_path(@routine.workout)
+      if params[:new_set]
+        redirect_to workout_path(@routine.workout, routine_type_id: @routine.routine_type_id, set_number: @routine.set_number + 1)
+      else
+        redirect_to workout_path(@routine.workout)
+      end
     else
       redirect_back(fallback_location: root_path, alert: @routine.errors.full_messages.to_sentence)
     end

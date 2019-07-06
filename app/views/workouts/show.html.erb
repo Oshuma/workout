@@ -31,7 +31,7 @@
   </table>
 </div>
 
-<%= form_for(@workout.routines.new) do |f| %>
+<%= form_for(@workout.routines.new(set_number: params[:set_number])) do |f| %>
   <%= f.hidden_field(:workout_id) %>
 
   <div class="form-row">
@@ -65,6 +65,7 @@
 
   <div class="form-group">
     <%= f.submit('Log', class: 'btn btn-success') %>
+    <%= f.submit('Log & New Set', name: 'new_set', class: 'btn btn-light') %>
   </div>
 <% end %>
 

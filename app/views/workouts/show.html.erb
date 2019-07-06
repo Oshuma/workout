@@ -14,8 +14,8 @@
     </div>
 
     <div class="table-responsive">
-      <table class="table">
-        <thead>
+      <table class="table table-sm">
+        <thead class="thead-light">
           <tr>
             <th scope="col">Type</th>
             <th scope="col">lbs</th>
@@ -63,8 +63,9 @@
   </div>
 
   <div class="form-group">
-    <%= f.submit('Log Routine', class: 'btn btn-primary') %>
-    <%= f.submit('Log & Start New Set', name: 'create_set', class: 'btn btn-info') %>
+    <%= f.submit('Log', class: 'btn btn-success') %>
+    <%= f.submit('Log & New Set', name: 'create_set', class: 'btn btn-light') %>
+    <%= link_to('New Set', workout_workout_sets_path(@workout), method: :post, class: 'btn btn-light') %>
   </div>
 <% end %>
 

@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   resources :routine_types
   resources :routines
-  resources :workouts
+  resources :workouts do
+    resources :workout_sets
+  end
 end

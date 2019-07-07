@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown"></button>
+
+  <div class="dropdown-menu">
+    <%= link_to('Edit', edit_routine_path(routine), data: { toggle: 'modal', target: "#edit-routine-#{routine.id}" }, remote: true, class: 'dropdown-item') %>
+    <%= link_to('Delete', routine_path(routine), class: 'dropdown-item', method: :delete, data: { confirm: "Delete #{routine.routine_type.name} Set #{routine.set_number}?" }) %>
+  </div>
+</div>
+
+<div id="edit-routine-<%= routine.id %>" class="modal fade" tabindex="-1" role="dialog"></div>

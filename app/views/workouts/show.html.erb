@@ -9,8 +9,9 @@
   <table class="table table-sm">
     <thead class="thead-light">
       <tr>
+        <th scope="col"></th>
         <th scope="col">Set</th>
-        <th scope="col">Type</th>
+        <th scope="col">Routine</th>
         <th scope="col">lbs</th>
         <th scope="col">Reps</th>
         <th scope="col">Mins</th>
@@ -20,6 +21,7 @@
     <tbody>
       <% @workout.routines.each do |routine| %>
         <tr>
+          <td><%= render 'routines/actions', routine: routine %></td>
           <td><%= routine.set_number %></td>
           <td><%= routine.routine_type.name %></td>
           <td><%= routine.lbs %></td>
@@ -46,7 +48,7 @@
                    {class: 'custom-select'}) %>
 
       <div class="input-group-append">
-        <%= link_to('+', new_routine_type_path(workout_id: @workout.id), data: { toggle: 'modal', target: '#new-routine-type-modal' }, remote: true, class: 'btn btn-primary') %>
+        <%= link_to('+', new_routine_type_path(workout_id: @workout.id), data: { toggle: 'modal', target: '#new-routine-type-modal' }, remote: true, class: 'btn border border-secondary') %>
       </div>
     </div>
   </div>
@@ -64,8 +66,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.submit('Log', class: 'btn btn-success') %>
-    <%= f.submit('Log & New Set', name: 'new_set', class: 'btn btn-light') %>
+    <%= f.submit('Log', class: 'btn btn-lg btn-success') %>
+    <%= f.submit('Log & New Set', name: 'new_set', class: 'btn btn-lg btn-light') %>
   </div>
 <% end %>
 

@@ -14,6 +14,31 @@ class RoutinesController < ApplicationController
     end
   end
 
+  def edit
+    @routine_types = RoutineType.order(name: :asc)
+    @routine = Routine.find(params[:id])
+  end
+
+  def update
+    @routine = Routine.find(params[:id])
+
+    if @routine.update(routine_params)
+      redirect_to(workout_path(@routine.workout))
+    else
+      redirect_to(workout_path(@routine.workout, alert: 'Could not update routine.'))
+    end
+  end
+
+  def destroy
+    @routine = Routine.find(params[:id])
+
+    if @routine.destroy
+      redirect_to(workout_path(@routine.workout))
+    else
+      redirect_to(workout_path(@routine.workout, alert: 'Could not delete routine.'))
+    end
+  end
+
   private
 
   def routine_params

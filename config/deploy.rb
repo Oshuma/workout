@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "workout"
-set :repo_url, "https://github.com/Oshuma/workout.git"
+set :repo_url, "git@github.com:Oshuma/workout.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -23,7 +23,6 @@ set :deploy_to, ENV['DEPLOY_TO']
 
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
-append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"

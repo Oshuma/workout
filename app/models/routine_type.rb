@@ -1,6 +1,6 @@
 class RoutineType < ApplicationRecord
   belongs_to :user
-  has_many :routines
+  has_many :routines, dependent: :restrict_with_error
 
   validates :name,
     presence: true,

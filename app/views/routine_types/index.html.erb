@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Routines</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @routine_types.each do |routine_type| %>
+        <tr>
+          <td><%= render 'actions', routine_type: routine_type %></td>
+          <td><%= routine_type.name %></td>
+          <td><%= routine_type.routines.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

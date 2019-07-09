@@ -1,11 +1,11 @@
 class RoutineTypesController < ApplicationController
 
   def new
-    @routine_type = RoutineType.new
+    @routine_type = current_user.routine_types.new
   end
 
   def create
-    @routine_type = RoutineType.new(routine_type_params)
+    @routine_type = current_user.routine_types.new(routine_type_params)
 
     if @routine_type.save
       redirect_to workout_path(params[:workout_id], routine_type_id: @routine_type.id)

@@ -1,7 +1,9 @@
 class RoutinesController < ApplicationController
 
+  before_action :set_workout
+
   def create
-    @routine = Routine.new(routine_params)
+    @routine = @workout.routines.new(routine_params)
 
     if @routine.save
       if params[:new_set]
@@ -15,12 +17,12 @@ class RoutinesController < ApplicationController
   end
 
   def edit
-    @routine_types = RoutineType.order(name: :asc)
-    @routine = Routine.find(params[:id])
+    @routine_types = current_user.routine_types.order(name: :asc)
+    @routine = @workout.routines.find(params[:id])
   end
 
   def update
-    @routine = Routine.find(params[:id])
+    @routine = @workout.routines.find(params[:id])
 
     if @routine.update(routine_params)
       redirect_to(workout_path(@routine.workout))
@@ -30,7 +32,7 @@ class RoutinesController < ApplicationController
   end
 
   def destroy
-    @routine = Routine.find(params[:id])
+    @routine = @workout.routines.find(params[:id])
 
     if @routine.destroy
       redirect_to(workout_path(@routine.workout))
@@ -43,6 +45,10 @@ class RoutinesController < ApplicationController
 
   def routine_params
     params.require(:routine).permit(:routine_type_id, :workout_id, :set_number, :lbs, :reps, :minutes)
+  end
+
+  def set_workout
+    @workout = current_user.workouts.find(params[:workout_id])
   end
 
 end

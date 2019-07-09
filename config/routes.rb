@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :routine_types
-  resources :routines
-  resources :workouts
+  resources :workouts do
+    resources :routines
+  end
 end

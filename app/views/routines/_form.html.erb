@@ -7,7 +7,7 @@
       </button>
     </div>
 
-    <%= form_for(@routine) do |f| %>
+    <%= form_for([@workout, @routine]) do |f| %>
       <div class="modal-body">
         <div class="form-group">
           <%= f.select(:routine_type_id,

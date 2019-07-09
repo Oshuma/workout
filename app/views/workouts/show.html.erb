@@ -33,7 +33,7 @@
   </table>
 </div>
 
-<%= form_for(@workout.routines.new(set_number: params[:set_number])) do |f| %>
+<%= form_for([@workout, @workout.routines.new(set_number: params[:set_number])]) do |f| %>
   <%= f.hidden_field(:workout_id) %>
 
   <div class="form-row">

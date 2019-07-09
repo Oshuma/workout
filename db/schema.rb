@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_012619) do
+ActiveRecord::Schema.define(version: 2019_07_09_015123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,24 @@ ActiveRecord::Schema.define(version: 2019_07_03_012619) do
     t.index ["workout_id"], name: "index_routines_on_workout_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
   create_table "workouts", force: :cascade do |t|
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
   add_foreign_key "routines", "routine_types"
   add_foreign_key "routines", "workouts"
+  add_foreign_key "workouts", "users"
 end

@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
 
   def index
-    @workouts = Workout.order(date: :asc).page(params[:page])
+    @workouts = Workout.order(date: :desc).page(params[:page])
   end
 
   def new
@@ -21,6 +21,16 @@ class WorkoutsController < ApplicationController
   def show
     @routine_types = RoutineType.order(name: :asc)
     @workout = Workout.find(params[:id])
+  end
+
+  def destroy
+    @workout = Workout.find(params[:id])
+
+    if @workout.destroy
+      redirect_to(root_path, notice: "Workout #{@workout.date} deleted.")
+    else
+      redirect_to(root_path, alert: 'Could not delete workout.')
+    end
   end
 
   private

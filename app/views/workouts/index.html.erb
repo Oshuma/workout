@@ -1,15 +1,23 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @workouts.each do |workout| %>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <th scope="col"><%= link_to(workout.date, workout) %></th>
+        <th scope="col"></th>
+        <th scope="col">Date</th>
+        <th scope="col">Routines</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @workouts.each do |workout| %>
+        <tr>
+          <td><%= render 'actions', workout: workout %></td>
+          <td><%= link_to(workout.date, workout) %></td>
+          <td><%= workout.routines.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @workouts %>

@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: workout_production
-  username: <%= ENV['WEB_DATABASE_USERNAME'] %>
-  password: <%= ENV['WEB_DATABASE_PASSWORD'] %>
+  database: workout
+  username: <%= ENV['WORKOUT_DATABASE_USERNAME'] %>
+  password: <%= ENV['WORKOUT_DATABASE_PASSWORD'] %>

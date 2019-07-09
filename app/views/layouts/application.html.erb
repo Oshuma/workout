@@ -14,29 +14,10 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand navbar-dark bg-primary">
-      <%= link_to('Workout', root_path, class: 'navbar-brand') %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item <%= 'active' if current_page?(new_workout_path) %>">
-            <%= link_to('Start', new_workout_path, class: 'nav-link') %>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <%= render 'shared/navbar' %>
 
     <div class="container-fluid">
-      <% flash.each do |type, msg| %>
-        <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
-          <%= msg %>
-          <button class="close" data-dismiss="alert">x</button>
-        </div>
-      <% end %>
-
+      <%= render 'shared/messages' %>
       <%= yield %>
     </div>
   </body>

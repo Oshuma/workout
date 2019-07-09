@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+  <%= link_to('Workout', root_path, class: 'navbar-brand') %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if current_page?(root_path) || current_page?(new_workout_path) %>
+        <li class="nav-item <%= 'active' if current_page?(new_workout_path) %>">
+          <%= link_to('Start', new_workout_path, class: 'nav-link') %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

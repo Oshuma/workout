@@ -84,5 +84,6 @@ test:
 production:
   <<: *default
   database: workout
+  host: localhost
   username: <%= ENV['WORKOUT_DATABASE_USERNAME'] %>
   password: <%= ENV['WORKOUT_DATABASE_PASSWORD'] %>

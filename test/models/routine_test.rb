@@ -13,4 +13,16 @@ class RoutineTest < ActiveSupport::TestCase
 
     assert_not_empty(routine.errors[:base])
   end
+
+  test "#full_title returns an expected value" do
+    routine = routines(:one)
+
+    title = [
+      routine.workout.date,
+      routine.routine_type.name,
+      routine.set_number
+    ].join(' / ')
+
+    assert_equal(title, routine.full_title)
+  end
 end

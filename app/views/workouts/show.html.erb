@@ -5,6 +5,8 @@
   </ol>
 </nav>
 
+<%= render 'routines/form' %>
+
 <div class="table-responsive">
   <table class="table table-hover table-sm">
     <thead class="thead-light">
@@ -20,6 +22,8 @@
 
     <tbody>
       <% @workout.routines.each do |routine| %>
+        <% next if routine.new_record? %>
+
         <tr>
           <td><%= render 'routines/actions', routine: routine %></td>
           <td><%= routine.set_number %></td>
@@ -32,43 +36,5 @@
     </tbody>
   </table>
 </div>
-
-<%= form_for([@workout, @workout.routines.new(set_number: params[:set_number])]) do |f| %>
-  <%= f.hidden_field(:workout_id) %>
-
-  <div class="form-row">
-    <div class="form-group col-2">
-      <%= f.number_field(:set_number, placeholder: 'set', class: 'form-control') %>
-    </div>
-
-    <div class="input-group col mb-3">
-      <%= f.select(:routine_type_id,
-                   options_from_collection_for_select(@routine_types, :id, :name, params[:routine_type_id]),
-                   {prompt: '-- Routine Type --'},
-                   {class: 'custom-select'}) %>
-
-      <div class="input-group-append">
-        <%= link_to('+', new_routine_type_path(workout_id: @workout.id), data: { toggle: 'modal', target: '#new-routine-type-modal' }, remote: true, class: 'btn border border-secondary') %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col">
-      <%= f.number_field(:lbs, placeholder: 'lbs', class: 'form-control') %>
-    </div>
-    <div class="form-group col">
-      <%= f.number_field(:reps, placeholder: 'reps', class: 'form-control') %>
-    </div>
-    <div class="form-group col">
-      <%= f.number_field(:minutes, placeholder: 'minutes', class: 'form-control') %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit('Log', class: 'btn btn-lg btn-success') %>
-    <%= f.submit('Log & New Set', name: 'new_set', class: 'btn btn-lg btn-light') %>
-  </div>
-<% end %>
 
 <div id="new-routine-type-modal" class="modal fade" tabindex="-1" role="dialog"></div>

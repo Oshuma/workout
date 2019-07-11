@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
 
   def index
-    @workouts = current_user.workouts.order(date: :desc).page(params[:page])
+    @workouts = current_user.workouts.order_by_entry.page(params[:page])
   end
 
   def new

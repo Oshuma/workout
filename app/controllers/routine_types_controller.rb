@@ -1,5 +1,7 @@
 class RoutineTypesController < ApplicationController
 
+  before_action :set_routine_type, only: [:show, :edit, :update, :destroy]
+
   def index
     @routine_types = current_user.routine_types.order(name: :asc)
   end
@@ -18,13 +20,22 @@ class RoutineTypesController < ApplicationController
     end
   end
 
+  def show
+    @weight_progression = []
+    @reps_progression = []
+    @minutes_progression = []
+
+    @routine_type.routines.includes(:workout).each do |routine|
+      @weight_progression << [routine.created_at.to_formatted_s(:short), routine.lbs]
+      @reps_progression << [routine.created_at.to_formatted_s(:short), routine.reps]
+      @minutes_progression << [routine.created_at.to_formatted_s(:short), routine.minutes]
+    end
+  end
+
   def edit
-    @routine_type = current_user.routine_types.find(params[:id])
   end
 
   def update
-    @routine_type = current_user.routine_types.find(params[:id])
-
     if @routine_type.update(routine_type_params)
       redirect_to(routine_types_path, notice: 'Routine type updated.')
     else
@@ -33,8 +44,6 @@ class RoutineTypesController < ApplicationController
   end
 
   def destroy
-    @routine_type = current_user.routine_types.find(params[:id])
-
     if @routine_type.destroy
       redirect_to(routine_types_path, notice: 'Routine type deleted.')
     else
@@ -46,6 +55,10 @@ class RoutineTypesController < ApplicationController
 
   def routine_type_params
     params.require(:routine_type).permit(:name)
+  end
+
+  def set_routine_type
+    @routine_type = current_user.routine_types.find(params[:id])
   end
 
 end

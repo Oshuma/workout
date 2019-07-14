@@ -1,0 +1,12 @@
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to('Routine Types', routine_types_path) %></li>
+    <li class="breadcrumb-item active"><%= @routine_type.name %></li>
+  </ol>
+</nav>
+
+<% if @routine_type.time_based? %>
+  <%= render 'time_based_graphs' %>
+<% elsif @routine_type.weight_based? %>
+  <%= render 'weight_based_graphs' %>
+<% end %>

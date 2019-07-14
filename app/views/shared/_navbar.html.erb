@@ -17,6 +17,10 @@
     <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item">
+          <%= link_to('Graphs', graphs_workouts_path, class: 'nav-link') %>
+        </li>
+
+        <li class="nav-item">
           <%= link_to('Routine Types', routine_types_path, class: 'nav-link') %>
         </li>
 

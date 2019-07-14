@@ -8,4 +8,8 @@ class User < ApplicationRecord
 
   has_many :routine_types, dependent: :destroy
   has_many :workouts, dependent: :destroy
+
+  def routines
+    Routine.where(workout_id: workouts.pluck(:id))
+  end
 end

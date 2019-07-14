@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :routine_types
   resources :workouts do
     resources :routines
+    get :graphs, on: :collection
   end
 end

@@ -7,7 +7,14 @@ class RoutinesController < ApplicationController
 
     if @routine.save
       if params[:new_set]
-        redirect_to workout_path(@routine.workout, routine_type_id: @routine.routine_type_id, set_number: @routine.set_number + 1)
+        redirect_params = {
+          routine_type_id: @routine.routine_type_id,
+          lbs: @routine.lbs,
+          reps: @routine.reps,
+          minutes: @routine.minutes,
+          set_number: (@routine.set_number + 1),
+        }
+        redirect_to workout_path(@routine.workout, redirect_params)
       else
         redirect_to workout_path(@routine.workout)
       end

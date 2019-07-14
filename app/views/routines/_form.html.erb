@@ -20,13 +20,13 @@
 
   <div class="form-row">
     <div class="form-group col">
-      <%= f.number_field(:lbs, placeholder: 'lbs', class: 'form-control') %>
+      <%= f.number_field(:lbs, value: params[:lbs], placeholder: 'lbs', class: 'form-control') %>
     </div>
     <div class="form-group col">
-      <%= f.number_field(:reps, placeholder: 'reps', class: 'form-control') %>
+      <%= f.number_field(:reps, value: params[:reps], placeholder: 'reps', class: 'form-control') %>
     </div>
     <div class="form-group col">
-      <%= f.number_field(:minutes, placeholder: 'minutes', class: 'form-control') %>
+      <%= f.number_field(:minutes, value: params[:minutes], placeholder: 'minutes', class: 'form-control') %>
     </div>
   </div>
 

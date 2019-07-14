@@ -18,25 +18,25 @@
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to(routine_types_path, class: 'nav-link') do %>
-            <%= icon('fas', 'dumbbell') %> Routine Types
+            <%= icon('fas', 'dumbbell', class: 'fa-fw') %> Routine Types
           <% end %>
         </li>
 
         <li class="nav-item">
           <%= link_to(graphs_workouts_path, class: 'nav-link') do %>
-            <%= icon('fas', 'chart-line') %> Graphs
+            <%= icon('fas', 'chart-line', class: 'fa-fw') %> Graphs
           <% end %>
         </li>
 
         <li class="nav-item">
           <%= link_to(destroy_user_session_path, method: :delete, class: 'nav-link') do %>
-            <%= icon('fas', 'sign-out-alt') %> Logout
+            <%= icon('fas', 'sign-out-alt', class: 'fa-fw') %> Logout
           <% end %>
         </li>
       <% else %>
         <li class="nav-item">
           <%= link_to(new_user_session_path, class: 'nav-link') do %>
-            <%= icon('fas', 'sign-in-alt') %> Login
+            <%= icon('fas', 'sign-in-alt', class: 'fa-fw') %> Login
           <% end %>
         </li>
       <% end %>

@@ -23,6 +23,12 @@
         </li>
 
         <li class="nav-item">
+          <%= link_to(graphs_workouts_path, class: 'nav-link') do %>
+            <%= icon('fas', 'chart-line') %> Graphs
+          <% end %>
+        </li>
+
+        <li class="nav-item">
           <%= link_to(destroy_user_session_path, method: :delete, class: 'nav-link') do %>
             <%= icon('fas', 'sign-out-alt') %> Logout
           <% end %>

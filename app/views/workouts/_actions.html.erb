@@ -2,6 +2,8 @@
   <button class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown"></button>
 
   <div class="dropdown-menu">
-    <%= link_to('Delete', workout_path(workout), class: 'dropdown-item', method: :delete, data: { confirm: "Delete workout day #{workout.date}?" }) %>
+    <%= link_to(workout_path(workout), class: 'dropdown-item', method: :delete, data: { confirm: "Delete workout day #{workout.date}?" }) do %>
+      <%= icon('fas', 'trash', class: 'fa-fw') %> Delete
+    <% end %>
   </div>
 </div>

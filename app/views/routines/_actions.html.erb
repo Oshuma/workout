@@ -2,8 +2,15 @@
   <button class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown"></button>
 
   <div class="dropdown-menu">
-    <%= link_to('Edit', edit_workout_routine_path(@workout, routine), data: { toggle: 'modal', target: "#edit-routine-#{routine.id}" }, remote: true, class: 'dropdown-item') %>
-    <%= link_to('Delete', workout_routine_path(@workout, routine), class: 'dropdown-item', method: :delete, data: { confirm: "Delete #{routine.routine_type.name} Set #{routine.set_number}?" }) %>
+    <%= link_to(edit_workout_routine_path(@workout, routine), data: { toggle: 'modal', target: "#edit-routine-#{routine.id}" }, remote: true, class: 'dropdown-item') do %>
+      <%= icon('fas', 'edit', class: 'fa-fw') %> Edit
+    <% end %>
+
+    <div class="dropdown-divider"></div>
+
+    <%= link_to(workout_routine_path(@workout, routine), class: 'dropdown-item', method: :delete, data: { confirm: "Delete #{routine.routine_type.name} Set #{routine.set_number}?" }) do %>
+      <%= icon('fas', 'trash', class: 'fa-fw') %> Delete
+    <% end %>
   </div>
 </div>
 

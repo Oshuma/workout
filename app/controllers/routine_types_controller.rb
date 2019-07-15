@@ -25,10 +25,10 @@ class RoutineTypesController < ApplicationController
     @reps_progression = []
     @minutes_progression = []
 
-    @routine_type.routines.includes(:workout).each do |routine|
-      @weight_progression << [routine.created_at.to_formatted_s(:short), routine.lbs]
-      @reps_progression << [routine.created_at.to_formatted_s(:short), routine.reps]
-      @minutes_progression << [routine.created_at.to_formatted_s(:short), routine.minutes]
+    @routine_type.routines.order(created_at: :asc).includes(:workout).each do |routine|
+      @weight_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.lbs]
+      @reps_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.reps]
+      @minutes_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.minutes]
     end
   end
 

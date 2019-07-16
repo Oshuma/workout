@@ -22,6 +22,7 @@ class WorkoutsController < ApplicationController
 
   def show
     @routine_types = current_user.routine_types.order(name: :asc)
+    @previous_workout = @workout.previous
   end
 
   def destroy

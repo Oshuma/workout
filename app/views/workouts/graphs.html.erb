@@ -1,13 +1,13 @@
 <div class="row mt-3">
   <div class="col">
-    <h4>Routines per Day</h4>
-    <%= area_chart(@routine_count, xtitle: 'Date', ytitle: 'Routines') %>
+    <h5>Routines <small class="text-muted">per day</small></h5>
+    <%= area_chart(@routine_count) %>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="col">
-    <h4>Routine Types</h4>
+    <h5>Routine Types</h5>
     <%= column_chart(@routine_types) %>
   </div>
 </div>

@@ -30,6 +30,11 @@ class RoutineTypesController < ApplicationController
       @reps_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.reps]
       @minutes_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.minutes]
     end
+
+    @set_progression = []
+    current_user.workouts.order(created_at: :asc).includes(:routines).where(routines: { routine_type_id: @routine_type.id }).each do |workout|
+      @set_progression << [workout.created_at.to_formatted_s(:graph_date_and_time), workout.routines.maximum(:set_number)]
+    end
   end
 
   def edit

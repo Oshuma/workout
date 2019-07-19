@@ -1,23 +1,16 @@
-<div class="table-responsive">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Date</th>
-        <th scope="col">Routines</th>
-      </tr>
-    </thead>
+<div class="row mt-3">
+  <div class="col">
+    <%= month_calendar(events: @workouts, attribute: :date) do |date, workouts| %>
+      <small class="text-muted float-right"><%= date.day %></small>
 
-    <tbody>
-      <% @workouts.each do |workout| %>
-        <tr>
-          <td><%= render 'actions', workout: workout %></td>
-          <td><%= link_to(workout.date, workout) %></td>
-          <td><%= workout.routines.count %></td>
-        </tr>
+      <% workouts.each do |workout| %>
+        <div>
+          <span class="d-none d-sm-inline">
+            <%= render 'actions', workout: workout %>
+          </span>
+          <%= link_to(workout.created_at.to_s(:local_time), workout) %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </div>
 </div>
-
-<%= paginate @workouts %>

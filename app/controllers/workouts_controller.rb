@@ -3,7 +3,10 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :destroy]
 
   def index
-    @workouts = current_user.workouts.order_by_entry.page(params[:page])
+    start_date = params[:start_date].present? ? Date.parse(params[:start_date]).beginning_of_month : Date.today.beginning_of_month
+    end_date = start_date.end_of_month
+
+    @workouts = current_user.workouts.order_by_entry.where(date: start_date..end_date)
   end
 
   def new
@@ -39,7 +42,9 @@ class WorkoutsController < ApplicationController
     current_user.workouts.order_by_entry.each do |workout|
       routine_data[workout.date] ||= 0
       routine_data[workout.date] += workout.routines.count
-      @routine_count << [workout.date.to_formatted_s(:graph_date), routine_data[workout.date]]
+      if routine_data[workout.date] > 0
+        @routine_count << [workout.date.to_formatted_s(:graph_date), routine_data[workout.date]]
+      end
     end
 
     @routine_types = []
@@ -49,7 +54,7 @@ class WorkoutsController < ApplicationController
       @routine_types << [routine_type.name, routine_type.routines.count]
 
       if routine_type.weight_based?
-        @routine_types_weight << { name: routine_type.name, data: routine_type.routines.group_by_day(:created_at).count }
+        @routine_types_weight << { name: routine_type.name, data: routine_type.routines.group_by_day(:created_at).count.reject { |k, v| v == 0 } }
       end
 
       if routine_type.time_based?

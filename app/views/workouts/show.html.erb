@@ -1,4 +1,8 @@
 <nav>
+  <span class="float-left">
+    <%= render 'actions', workout: @workout %>
+  </span>
+
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to('Workouts', workouts_path) %></li>
     <li class="breadcrumb-item active"><%= @workout.date %></li>

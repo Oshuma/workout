@@ -35,15 +35,17 @@ class WorkoutsController < ApplicationController
 
   def graphs
     @routine_count = []
-    current_user.workouts.order_by_entry.find_each do |workout|
-      @routine_count << [workout.date, workout.routines.count]
+    routine_data = {}
+    current_user.workouts.order_by_entry.each do |workout|
+      routine_data[workout.date] ||= 0
+      routine_data[workout.date] += workout.routines.count
+      @routine_count << [workout.date.to_formatted_s(:graph_date), routine_data[workout.date]]
     end
 
     @routine_types = []
-    current_user.routine_types.find_each do |routine_type|
+    current_user.routine_types.each do |routine_type|
       @routine_types << [routine_type.name, routine_type.routines.count]
     end
-
   end
 
   private

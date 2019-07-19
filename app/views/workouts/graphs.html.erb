@@ -5,9 +5,23 @@
   </div>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-5">
   <div class="col">
-    <h5>Routine Types</h5>
+    <h5>Routine Types <small class="text-muted">totals</small></h5>
     <%= column_chart(@routine_types) %>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col">
+    <h5>Routine Types <small class="text-muted">weight based; per workout</small></h5>
+    <%= line_chart(@routine_types_weight, ytitle: 'Routine Count', xtitle: 'Workout Date', discrete: true) %>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col">
+    <h5>Routine Types <small class="text-muted">time based; per workout</small></h5>
+    <%= line_chart(@routine_types_time, ytitle: 'Routine Count', xtitle: 'Workout Date', discrete: true) %>
   </div>
 </div>

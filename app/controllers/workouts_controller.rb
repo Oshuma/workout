@@ -43,8 +43,18 @@ class WorkoutsController < ApplicationController
     end
 
     @routine_types = []
+    @routine_types_weight = []
+    @routine_types_time = []
     current_user.routine_types.each do |routine_type|
       @routine_types << [routine_type.name, routine_type.routines.count]
+
+      if routine_type.weight_based?
+        @routine_types_weight << { name: routine_type.name, data: routine_type.routines.group_by_day(:created_at).count }
+      end
+
+      if routine_type.time_based?
+        @routine_types_time << { name: routine_type.name, data: routine_type.routines.group_by_day(:created_at).count }
+      end
     end
   end
 

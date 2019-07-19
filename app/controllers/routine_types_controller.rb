@@ -32,7 +32,7 @@ class RoutineTypesController < ApplicationController
     end
 
     @set_progression = []
-    current_user.workouts.order(created_at: :asc).includes(:routines).where(routines: { routine_type_id: @routine_type.id }).each do |workout|
+    current_user.workouts.order_by_entry.reverse_order.includes(:routines).where(routines: { routine_type_id: @routine_type.id }).each do |workout|
       @set_progression << [workout.created_at.to_formatted_s(:graph_date_and_time), workout.routines.maximum(:set_number)]
     end
   end

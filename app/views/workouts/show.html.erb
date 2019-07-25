@@ -9,6 +9,10 @@
   </ol>
 </nav>
 
+<% if current_user.settings.rest_timer? && params[:rest_timer].present? %>
+  <%= render "rest_timer" %>
+<% end %>
+
 <%= render 'routines/form' %>
 
 <div class="table-responsive">

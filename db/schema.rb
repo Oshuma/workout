@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_14_015825) do
+ActiveRecord::Schema.define(version: 2019_07_22_040559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 2019_07_14_015825) do
     t.index ["workout_id"], name: "index_routines_on_workout_id"
   end
 
+  create_table "settings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "rest_timer", default: true
+    t.integer "rest_timer_interval", default: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_settings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,5 +65,6 @@ ActiveRecord::Schema.define(version: 2019_07_14_015825) do
   add_foreign_key "routine_types", "users"
   add_foreign_key "routines", "routine_types"
   add_foreign_key "routines", "workouts"
+  add_foreign_key "settings", "users"
   add_foreign_key "workouts", "users"
 end

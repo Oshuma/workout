@@ -29,6 +29,10 @@
         </li>
 
         <li class="nav-item">
+          <%= link_to(settings_path, class: 'nav-link') do %>
+            <%= icon('fas', 'cog', class: 'fa-fw') %> Settings
+          <% end %>
+
           <%= link_to(destroy_user_session_path, method: :delete, class: 'nav-link') do %>
             <%= icon('fas', 'sign-out-alt', class: 'fa-fw') %> Logout
           <% end %>

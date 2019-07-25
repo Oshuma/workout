@@ -1,0 +1,29 @@
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to('Home', root_path) %></li>
+    <li class="breadcrumb-item active">Settings</li>
+  </ol>
+</nav>
+
+<%= form_for(@settings) do |f| %>
+  <div class="form-group">
+    <div class="custom-control custom-switch">
+      <%= f.check_box(:rest_timer, class: 'custom-control-input') %>
+      <%= f.label(:rest_timer, 'Enable Rest Timer', class: 'custom-control-label') %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-5 col-md-2">
+      <%= f.label(:rest_timer_interval, 'Rest Timer Interval') %>
+      <%= f.number_field(:rest_timer_interval, class: 'form-control') %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <%= f.submit('Save', class: 'btn btn-primary') %>
+      <%= link_to('Cancel', root_path, class: 'btn btn-light') %>
+    </div>
+  </div>
+<% end %>

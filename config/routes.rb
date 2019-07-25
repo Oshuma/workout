@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :routine_types
+  resources :settings, only: [:index, :update]
 
   resources :workouts do
     resources :routines

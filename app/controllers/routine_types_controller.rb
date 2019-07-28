@@ -14,7 +14,11 @@ class RoutineTypesController < ApplicationController
     @routine_type = current_user.routine_types.new(routine_type_params)
 
     if @routine_type.save
-      redirect_to workout_path(params[:workout_id], routine_type_id: @routine_type.id)
+      if params[:workout_id].present?
+        redirect_to workout_path(params[:workout_id], routine_type_id: @routine_type.id)
+      else
+        redirect_to routine_types_path, notice: 'Routine type saved.'
+      end
     else
       redirect_back(fallback_location: root_path, alert: @routine_type.errors.full_messages.to_sentence)
     end
@@ -59,7 +63,7 @@ class RoutineTypesController < ApplicationController
   private
 
   def routine_type_params
-    params.require(:routine_type).permit(:name)
+    params.require(:routine_type).permit(:name, :rest_time)
   end
 
   def set_routine_type

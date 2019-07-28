@@ -2,7 +2,7 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h1 id="rest-timer-value" class="text-center display-1"><%= current_user.settings.rest_timer_interval %></h1>
+        <h1 id="rest-timer-value" class="text-center display-1"><%= params[:rest_time] %></h1>
         <%= audio_tag('/audios/rest_timer.wav', id: 'rest-timer-sound', autoplay: false, loop: false) %>
       </div>
     </div>
@@ -17,7 +17,7 @@
     });
 
     var end = new Date();
-    end.setSeconds(end.getSeconds() + <%= current_user.settings.rest_timer_interval %>);
+    end.setSeconds(end.getSeconds() + <%= params[:rest_time] %>);
 
     var restTimer = setInterval(function() {
       var now = new Date().getTime();

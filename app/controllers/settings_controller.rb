@@ -17,10 +17,7 @@ class SettingsController < ApplicationController
   private
 
   def settings_params
-    params.require(:settings).permit(
-      :rest_timer,
-      :rest_timer_interval,
-    )
+    params.require(:settings).permit(:rest_timer)
   end
 
 end

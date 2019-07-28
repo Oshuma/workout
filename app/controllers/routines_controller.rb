@@ -15,8 +15,9 @@ class RoutinesController < ApplicationController
           set_number: (@routine.set_number + 1),
         }
 
-        if current_user.settings.rest_timer?
+        if current_user.settings.rest_timer? && @routine.routine_type.rest_time?
           redirect_params[:rest_timer] = true
+          redirect_params[:rest_time] = @routine.routine_type.rest_time
         end
 
         redirect_to workout_path(@routine.workout, redirect_params)

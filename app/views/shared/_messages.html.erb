@@ -1,6 +1,14 @@
-<% flash.each do |type, msg| %>
-  <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
-    <%= msg %>
-    <button class="close" data-dismiss="alert">x</button>
+<% unless flash.empty? %>
+  <div class="fixed-top">
+    <% flash.each do |type, msg| %>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-10 offset-1">
+          <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
+            <%= msg %>
+            <button class="close" data-dismiss="alert">x</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>

@@ -4,6 +4,7 @@ class Routine < ApplicationRecord
 
   validates :set_number, presence: true
   validate :ensure_at_least_one_metric
+  validate :ensure_lbs_has_reps
 
   def full_title
     [
@@ -18,6 +19,14 @@ class Routine < ApplicationRecord
   def ensure_at_least_one_metric
     unless [lbs, reps, minutes].map { |a| a.present? }.any?
       errors[:base] << "must set either lbs, reps or minutes"
+    end
+  end
+
+  def ensure_lbs_has_reps
+    return if minutes.present?
+
+    unless lbs.present? && reps.present?
+      errors[:base] << "must include lbs and reps"
     end
   end
 end

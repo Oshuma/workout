@@ -14,6 +14,34 @@ class RoutineTest < ActiveSupport::TestCase
     assert_not_empty(routine.errors[:base])
   end
 
+  test "ensure lbs has reps" do
+    routine = routines(:one)
+    routine.minutes = nil  # only applies to weight based routines
+
+    routine.lbs = 10
+    routine.reps = nil
+
+    assert_raises ActiveRecord::RecordInvalid do
+      routine.save!
+    end
+
+    assert_not_empty(routine.errors[:base])
+  end
+
+  test "ensure reps has lbs" do
+    routine = routines(:one)
+    routine.minutes = nil  # only applies to weight based routines
+
+    routine.lbs = nil
+    routine.reps = 5
+
+    assert_raises ActiveRecord::RecordInvalid do
+      routine.save!
+    end
+
+    assert_not_empty(routine.errors[:base])
+  end
+
   test "#full_title returns an expected value" do
     routine = routines(:one)
 

@@ -5,15 +5,16 @@ class RoutinesController < ApplicationController
   def create
     @routine = @workout.routines.new(routine_params)
 
+    redirect_params = {
+      routine_type_id: @routine.routine_type_id,
+      lbs: @routine.lbs,
+      reps: @routine.reps,
+      minutes: @routine.minutes,
+    }
+
     if @routine.save
       if params[:new_set]
-        redirect_params = {
-          routine_type_id: @routine.routine_type_id,
-          lbs: @routine.lbs,
-          reps: @routine.reps,
-          minutes: @routine.minutes,
-          set_number: (@routine.set_number + 1),
-        }
+        redirect_params[:set_number] = (@routine.set_number + 1)
 
         if current_user.settings.rest_timer? && @routine.routine_type.rest_time?
           redirect_params[:rest_timer] = true
@@ -25,7 +26,8 @@ class RoutinesController < ApplicationController
         redirect_to workout_path(@routine.workout)
       end
     else
-      redirect_back(fallback_location: root_path, alert: @routine.errors.full_messages.to_sentence)
+      redirect_params[:set_number] = @routine.set_number
+      redirect_to workout_path(@routine.workout, redirect_params), alert: @routine.errors.full_messages.to_sentence
     end
   end
 

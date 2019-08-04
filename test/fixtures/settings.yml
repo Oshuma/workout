@@ -1,11 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  rest_timer: true
-  rest_timer_interval: 30
+# FIXME: These complain with 'settings table has no column named user'
+# one:
+  # user: one
+  # rest_timer: true
 
-two:
-  user: two
-  rest_timer: false
-  rest_timer_interval: 10
+# two:
+  # user: two
+  # rest_timer: false

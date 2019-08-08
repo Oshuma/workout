@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+heavy_bag:
   name: Heavy Bag
 
-two:
+bench_press:
   name: Bench Press
+
+treadmill:
+  name: Treadmill

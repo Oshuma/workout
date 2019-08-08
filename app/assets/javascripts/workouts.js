@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function() {
     var previous_lbs = opt.data('previous-lbs');
     var previous_reps = opt.data('previous-reps');
     var previous_minutes = opt.data('previous-minutes');
+    var previous_distance = opt.data('previous-distance');
 
     if (previous_lbs !== undefined) {
       $('#previous_lbs').html('Previous: ' + previous_lbs).removeClass('d-none');
@@ -22,6 +23,12 @@ $(document).on('turbolinks:load', function() {
       $('#previous_minutes').html('Previous: ' + previous_minutes).removeClass('d-none');
     } else {
       $('#previous_minutes').html('').addClass('d-none');
+    }
+
+    if (previous_distance !== undefined) {
+      $('#previous_distance').html('Previous: ' + previous_distance).removeClass('d-none');
+    } else {
+      $('#previous_distance').html('').addClass('d-none');
     }
   });
 

@@ -6,6 +6,7 @@ class RoutineTest < ActiveSupport::TestCase
     routine.lbs = nil
     routine.reps = nil
     routine.minutes = nil
+    routine.distance = nil
 
     assert_raises ActiveRecord::RecordInvalid do
       routine.save!

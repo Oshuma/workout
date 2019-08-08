@@ -2,14 +2,24 @@
 
 one:
   workout: one
-  routine_type: one
+  routine_type: heavy_bag
   lbs:
   reps:
   minutes: 3
+  distance:
 
 two:
   workout: two
-  routine_type: two
+  routine_type: bench_press
   lbs: 45
   reps: 10
   minutes:
+  distance:
+
+three:
+  workout: one
+  routine_type: treadmill
+  lbs:
+  reps:
+  minutes: 5
+  distance: 0.5

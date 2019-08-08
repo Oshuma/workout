@@ -59,7 +59,15 @@ class RoutinesController < ApplicationController
   private
 
   def routine_params
-    params.require(:routine).permit(:routine_type_id, :workout_id, :set_number, :lbs, :reps, :minutes)
+    params.require(:routine).permit(
+      :routine_type_id,
+      :workout_id,
+      :set_number,
+      :lbs,
+      :reps,
+      :minutes,
+      :distance
+    )
   end
 
   def set_workout

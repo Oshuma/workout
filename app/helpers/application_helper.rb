@@ -26,6 +26,7 @@ module ApplicationHelper
           'data-previous-lbs' => previous.maximum(:lbs),
           'data-previous-reps' => previous.maximum(:reps),
           'data-previous-minutes' => previous.maximum(:minutes),
+          'data-previous-distance' => previous.maximum(:distance),
         }
       end
 

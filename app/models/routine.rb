@@ -17,8 +17,8 @@ class Routine < ApplicationRecord
   private
 
   def ensure_at_least_one_metric
-    unless [lbs, reps, minutes].map { |a| a.present? }.any?
-      errors[:base] << "must set either lbs, reps or minutes"
+    unless [lbs, reps, minutes, distance].map { |a| a.present? }.any?
+      errors[:base] << "must set either lbs, reps, minutes or distance"
     end
   end
 

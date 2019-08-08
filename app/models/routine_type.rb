@@ -6,6 +6,10 @@ class RoutineType < ApplicationRecord
     presence: true,
     uniqueness: { scope: :user_id }
 
+  def distance_based?
+    routines.pluck(:distance).any?
+  end
+
   def time_based?
     routines.pluck(:minutes).any?
   end

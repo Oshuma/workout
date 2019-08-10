@@ -2,10 +2,27 @@ $(document).on('turbolinks:load', function() {
 
   $('#routine_routine_type_id').on('change', function() {
     var opt = $(this).find(':selected');
+    var metric = opt.data('metric');
     var previous_lbs = opt.data('previous-lbs');
     var previous_reps = opt.data('previous-reps');
     var previous_minutes = opt.data('previous-minutes');
     var previous_distance = opt.data('previous-distance');
+
+    // Show metric-relevant fields.
+    $('.routine-field').addClass('d-none');
+    switch (metric) {
+      case 'distance':
+        $('#routine_distance').closest('.form-group').removeClass('d-none');
+        $('#routine_minutes').closest('.form-group').removeClass('d-none');
+        break;
+      case 'time':
+        $('#routine_minutes').closest('.form-group').removeClass('d-none');
+        break;
+      case 'weight':
+        $('#routine_lbs').closest('.form-group').removeClass('d-none');
+        $('#routine_reps').closest('.form-group').removeClass('d-none');
+        break;
+    }
 
     if (previous_lbs !== undefined) {
       $('#previous_lbs').html('Previous: ' + previous_lbs).removeClass('d-none');

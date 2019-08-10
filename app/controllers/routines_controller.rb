@@ -10,6 +10,7 @@ class RoutinesController < ApplicationController
       lbs: @routine.lbs,
       reps: @routine.reps,
       minutes: @routine.minutes,
+      distance: @routine.distance,
     }
 
     if @routine.save

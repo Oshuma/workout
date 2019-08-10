@@ -20,6 +20,8 @@ module ApplicationHelper
     routine_types.each do |routine_type|
       opt = [routine_type.name, routine_type.id]
 
+      opt << { 'data-metric' => routine_type.metric }
+
       if previous_workout.present?
         previous = previous_workout.routines.where(routine_type_id: routine_type.id)
         opt << {

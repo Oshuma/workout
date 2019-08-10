@@ -2,9 +2,12 @@
 
 heavy_bag:
   name: Heavy Bag
+  metric: <%= RoutineType.metrics[:time] %>
 
 bench_press:
   name: Bench Press
+  metric: <%= RoutineType.metrics[:weight] %>
 
 treadmill:
   name: Treadmill
+  metric: <%= RoutineType.metrics[:distance] %>

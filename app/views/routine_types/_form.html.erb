@@ -27,6 +27,17 @@
           <%= f.label(:rest_time, 'Rest Time') %>
           <%= f.number_field(:rest_time, class: 'form-control') %>
         </div>
+
+        <div class="form-group">
+          <label>Metric Type</label>
+
+          <%= f.collection_radio_buttons(:metric, RoutineType.metrics, :first, :first) do |m| %>
+            <div class="form-check">
+              <%= m.radio_button(class: 'form-check-input') %>
+              <%= m.label(class: 'form-check-label') { m.text.humanize } %>
+            </div>
+          <% end %>
+        </div>
       </div>
 
       <div class="modal-footer">

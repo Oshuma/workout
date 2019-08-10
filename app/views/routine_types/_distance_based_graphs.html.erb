@@ -1,0 +1,13 @@
+<div class="row mt-3">
+  <div class="col">
+    <h5>Minutes Progression <small class="text-muted">per routine</small></h5>
+    <%= line_chart(@minutes_progression, discrete: true) %>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col">
+    <h5>Distance Progression <small class="text-muted">per routine; in miles</small></h5>
+    <%= line_chart(@distance_progression, discrete: true) %>
+  </div>
+</div>

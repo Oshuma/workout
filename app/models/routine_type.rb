@@ -9,16 +9,4 @@ class RoutineType < ApplicationRecord
     uniqueness: { scope: :user_id }
 
   validates :metric, presence: true, inclusion: { in: metrics.keys }
-
-  def distance_based?
-    routines.pluck(:distance).any?
-  end
-
-  def time_based?
-    routines.pluck(:minutes).any?
-  end
-
-  def weight_based?
-    routines.pluck(:lbs).any?
-  end
 end

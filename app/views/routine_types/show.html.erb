@@ -5,8 +5,13 @@
   </ol>
 </nav>
 
-<% if @routine_type.time_based? %>
-  <%= render 'time_based_graphs' %>
-<% elsif @routine_type.weight_based? %>
-  <%= render 'weight_based_graphs' %>
-<% end %>
+<%=
+  case
+  when @routine_type.metric_distance?
+    render 'distance_based_graphs'
+  when @routine_type.metric_time?
+    render 'time_based_graphs'
+  when @routine_type.metric_weight?
+    render 'weight_based_graphs'
+  end
+%>

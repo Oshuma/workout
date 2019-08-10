@@ -42,6 +42,7 @@ gem 'font-awesome-sass', '~> 5.9.0'
 gem 'chartkick', '~> 3.2.0'
 gem 'groupdate', '~> 4.1.2'
 gem 'simple_calendar', '~> 2.3.0'
+gem 'rollbar', '~> 2.21.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -30,7 +30,7 @@ class RoutineTypesController < ApplicationController
     @minutes_progression = []
     @distance_progression = []
 
-    @routine_type.routines.order(created_at: :asc).includes(:workout).each do |routine|
+    @routine_type.routines.date_range(graph_date_range).order(created_at: :asc).includes(:workout).each do |routine|
       @weight_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.lbs]
       @reps_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.reps]
       @minutes_progression << [routine.created_at.to_formatted_s(:graph_date_and_time), routine.minutes]
@@ -38,7 +38,7 @@ class RoutineTypesController < ApplicationController
     end
 
     @set_progression = []
-    current_user.workouts.order_by_entry.reverse_order.includes(:routines).where(routines: { routine_type_id: @routine_type.id }).each do |workout|
+    current_user.workouts.date_range(graph_date_range).order_by_entry.reverse_order.includes(:routines).where(routines: { routine_type_id: @routine_type.id }).each do |workout|
       @set_progression << [workout.created_at.to_formatted_s(:graph_date_and_time), workout.routines.maximum(:set_number)]
     end
   end

@@ -5,6 +5,16 @@
   </ol>
 </nav>
 
+<div class="row mt-3">
+  <div class="col">
+    <%= form_tag(routine_type_path(@routine_type), method: :get, enforce_utf8: false, class: 'form-inline') do %>
+      <%= select_tag(:date_range, graph_date_range_options, class: 'custom-select mr-2') %>
+      <%= submit_tag('Filter', name: nil, class: 'btn btn-primary') %>
+      <%= link_to('Clear', routine_type_path(@routine_type), class: 'btn btn-link') %>
+    <% end %>
+  </div>
+</div>
+
 <%=
   case
   when @routine_type.metric_distance?

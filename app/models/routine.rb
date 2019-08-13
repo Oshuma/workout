@@ -1,4 +1,6 @@
 class Routine < ApplicationRecord
+  include DateRanger
+
   belongs_to :workout
   belongs_to :routine_type
 

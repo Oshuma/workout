@@ -1,4 +1,6 @@
 class RoutineType < ApplicationRecord
+  include DateRanger
+
   belongs_to :user
   has_many :routines, dependent: :restrict_with_error
 

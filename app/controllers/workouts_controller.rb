@@ -42,7 +42,7 @@ class WorkoutsController < ApplicationController
   def graphs
     @routine_count = []
     routine_data = {}
-    current_user.workouts.order_by_entry.reverse_order.each do |workout|
+    current_user.workouts.date_range(graph_date_range).order_by_entry.reverse_order.each do |workout|
       routine_data[workout.date] ||= 0
       routine_data[workout.date] += workout.routines.count
       if routine_data[workout.date] > 0
@@ -58,19 +58,19 @@ class WorkoutsController < ApplicationController
       @routine_types << [routine_type.name, routine_type.routines.count]
 
       if routine_type.metric_weight?
-        data = routine_type.routines.group_by_day(:created_at, format: "%D").count
+        data = routine_type.routines.date_range(graph_date_range).group_by_day(:created_at, format: "%D").count
           .reject { |date, value| value == 0 }
 
         @routine_types_weight << { name: routine_type.name, data: data }
       end
 
       if routine_type.metric_time?
-        data = routine_type.routines.group_by_day(:created_at, format: "%D").count
+        data = routine_type.routines.date_range(graph_date_range).group_by_day(:created_at, format: "%D").count
         @routine_types_time << { name: routine_type.name, data: data }
       end
 
       if routine_type.metric_distance?
-        data = routine_type.routines.group_by_day(:created_at, format: "%D").count
+        data = routine_type.routines.date_range(graph_date_range).group_by_day(:created_at, format: "%D").count
         @routine_types_distance << { name: routine_type.name, data: data }
       end
     end

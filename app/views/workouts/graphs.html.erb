@@ -1,7 +1,10 @@
 <div class="row mt-3">
   <div class="col">
-    <h5>Routines <small class="text-muted">per day</small></h5>
-    <%= area_chart(@routine_count, discrete: true) %>
+    <%= form_tag(graphs_workouts_path, method: :get, enforce_utf8: false, class: 'form-inline') do %>
+      <%= select_tag(:date_range, graph_date_range_options, class: 'custom-select mr-2') %>
+      <%= submit_tag('Filter', name: nil, class: 'btn btn-primary') %>
+      <%= link_to('Clear', graphs_workouts_path, class: 'btn btn-link') %>
+    <% end %>
   </div>
 </div>
 
@@ -9,6 +12,13 @@
   <div class="col">
     <h5>Routine Types <small class="text-muted">totals</small></h5>
     <%= column_chart(@routine_types) %>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col">
+    <h5>Routines <small class="text-muted">per day</small></h5>
+    <%= area_chart(@routine_count, discrete: true) %>
   </div>
 </div>
 

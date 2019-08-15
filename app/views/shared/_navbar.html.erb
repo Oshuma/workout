@@ -27,13 +27,23 @@
             <%= icon('fas', 'chart-line', class: 'fa-fw') %> Graphs
           <% end %>
         </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to(new_user_session_path, class: 'nav-link') do %>
+            <%= icon('fas', 'sign-in-alt', class: 'fa-fw') %> Login
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
 
+    <% if user_signed_in? %>
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
             <%= icon('fas', 'user', class: 'fa-fw') %>
           </a>
 
-          <div class="dropdown-menu">
+          <div class="dropdown-menu dropdown-menu-right">
             <%= link_to(settings_path, class: 'dropdown-item') do %>
               <%= icon('fas', 'cog', class: 'fa-fw') %> Settings
             <% end %>
@@ -45,13 +55,7 @@
             <% end %>
           </div>
         </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to(new_user_session_path, class: 'nav-link') do %>
-            <%= icon('fas', 'sign-in-alt', class: 'fa-fw') %> Login
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
   </div>
 </nav>

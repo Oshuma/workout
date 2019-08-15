@@ -34,4 +34,8 @@ module ApplicationHelper
 
     options_for_select(options, selected)
   end
+
+  def show_start_workout_button?
+    [root_path, new_workout_path, workouts_path].any? { |p| current_page?(p) }
+  end
 end

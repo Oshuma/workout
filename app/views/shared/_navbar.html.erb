@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-xs navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <%= link_to('Workout', root_path, class: 'navbar-brand') %>
 
   <ul class="navbar-nav mr-auto">
-    <% if current_page?(root_path) || current_page?(new_workout_path) %>
+    <% if show_start_workout_button? %>
       <li class="nav-item <%= 'active' if current_page?(new_workout_path) %>">
         <%= link_to('Start', new_workout_path, class: 'btn btn-outline-light my-2 my-sm-0') %>
       </li>
@@ -28,14 +28,22 @@
           <% end %>
         </li>
 
-        <li class="nav-item">
-          <%= link_to(settings_path, class: 'nav-link') do %>
-            <%= icon('fas', 'cog', class: 'fa-fw') %> Settings
-          <% end %>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+            <%= icon('fas', 'user', class: 'fa-fw') %>
+          </a>
 
-          <%= link_to(destroy_user_session_path, method: :delete, class: 'nav-link') do %>
-            <%= icon('fas', 'sign-out-alt', class: 'fa-fw') %> Logout
-          <% end %>
+          <div class="dropdown-menu">
+            <%= link_to(settings_path, class: 'dropdown-item') do %>
+              <%= icon('fas', 'cog', class: 'fa-fw') %> Settings
+            <% end %>
+
+            <div class="dropdown-divider"></div>
+
+            <%= link_to(destroy_user_session_path, method: :delete, class: 'dropdown-item') do %>
+              <%= icon('fas', 'sign-out-alt', class: 'fa-fw') %> Logout
+            <% end %>
+          </div>
         </li>
       <% else %>
         <li class="nav-item">

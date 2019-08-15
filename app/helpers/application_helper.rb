@@ -14,6 +14,14 @@ module ApplicationHelper
     end
   end
 
+  def graph_row(&block)
+    tag.div(class: 'row mt-4') do
+      tag.div(class: 'col') do
+        yield
+      end
+    end
+  end
+
   def options_for_routine_types(routine_types, selected = nil)
     options = []
 

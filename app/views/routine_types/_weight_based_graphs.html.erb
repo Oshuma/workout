@@ -1,20 +1,14 @@
-<div class="row mt-3">
-  <div class="col">
-    <h5>Weight Progression <small class="text-muted">per routine</small></h5>
-    <%= line_chart(@weight_progression, discrete: true) %>
-  </div>
-</div>
+<%= graph_row do %>
+  <h5>Weight Progression <small class="text-muted">per routine</small></h5>
+  <%= line_chart(@weight_progression, discrete: true) %>
+<% end %>
 
-<div class="row mt-3">
-  <div class="col">
-    <h5>Reps Progression <small class="text-muted">per routine</small></h5>
-    <%= line_chart(@reps_progression, discrete: true) %>
-  </div>
-</div>
+<%= graph_row do %>
+  <h5>Reps Progression <small class="text-muted">per routine</small></h5>
+  <%= line_chart(@reps_progression, discrete: true) %>
+<% end %>
 
-<div class="row mt-3">
-  <div class="col">
-    <h5>Set Progression <small class="text-muted">per workout</small></h5>
-    <%= line_chart(@set_progression, discrete: true) %>
-  </div>
-</div>
+<%= graph_row do %>
+  <h5>Set Progression <small class="text-muted">per workout</small></h5>
+  <%= line_chart(@set_progression, discrete: true) %>
+<% end %>

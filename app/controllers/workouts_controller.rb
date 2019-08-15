@@ -25,7 +25,6 @@ class WorkoutsController < ApplicationController
 
   def show
     @routine_types = current_user.routine_types.order(name: :asc)
-    @previous_workout = @workout.previous
     if params[:routine_type_id].present?
       @routine_type = current_user.routine_types.find(params[:routine_type_id])
     end

@@ -14,7 +14,7 @@ module ApplicationHelper
     end
   end
 
-  def options_for_routine_types(routine_types, selected = nil, previous_workout = nil)
+  def options_for_routine_types(routine_types, selected = nil)
     options = []
 
     routine_types.each do |routine_type|
@@ -22,15 +22,12 @@ module ApplicationHelper
 
       opt << { 'data-metric' => routine_type.metric }
 
-      if previous_workout.present?
-        previous = previous_workout.routines.where(routine_type_id: routine_type.id)
-        opt << {
-          'data-previous-lbs' => previous.maximum(:lbs),
-          'data-previous-reps' => previous.maximum(:reps),
-          'data-previous-minutes' => previous.maximum(:minutes),
-          'data-previous-distance' => previous.maximum(:distance),
-        }
-      end
+      opt << {
+        'data-previous-lbs' => current_user.routines.previous_lbs(routine_type).try(:lbs),
+        'data-previous-reps' => current_user.routines.previous_reps(routine_type).try(:reps),
+        'data-previous-minutes' => current_user.routines.previous_minutes(routine_type).try(:minutes),
+        'data-previous-distance' => current_user.routines.previous_distance(routine_type).try(:distance),
+      }
 
       options << opt
     end

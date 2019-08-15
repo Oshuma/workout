@@ -8,7 +8,7 @@
 
     <div class="input-group col mb-3">
       <%= f.select(:routine_type_id,
-                   options_for_routine_types(@routine_types, params[:routine_type_id], @previous_workout),
+                   options_for_routine_types(@routine_types, params[:routine_type_id]),
                    {prompt: '-- Routine Type --'},
                    {class: 'custom-select'}) %>
 

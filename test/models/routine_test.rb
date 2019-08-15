@@ -54,4 +54,67 @@ class RoutineTest < ActiveSupport::TestCase
 
     assert_equal(title, routine.full_title)
   end
+
+  test ".previous_lbs" do
+    workout = workouts(:one)
+    user = workout.user
+    routine_type = routine_types(:bench_press)
+    attrs = {
+      routine_type: routine_type,
+      workout: workout,
+      set_number: 1,
+      lbs: 10,
+      reps: 10,
+    }
+    prev = Routine.create!(attrs)
+
+    assert_equal(prev, user.routines.previous_lbs(routine_type))
+  end
+
+  test ".previous_reps" do
+    workout = workouts(:one)
+    user = workout.user
+    routine_type = routine_types(:bench_press)
+    attrs = {
+      routine_type: routine_type,
+      workout: workout,
+      set_number: 1,
+      lbs: 10,
+      reps: 10,
+    }
+    prev = Routine.create!(attrs)
+
+    assert_equal(prev, user.routines.previous_reps(routine_type))
+  end
+
+  test ".previous_minutes" do
+    workout = workouts(:one)
+    user = workout.user
+    routine_type = routine_types(:heavy_bag)
+    attrs = {
+      routine_type: routine_type,
+      workout: workout,
+      set_number: 1,
+      minutes: 10,
+    }
+    prev = Routine.create!(attrs)
+
+    assert_equal(prev, user.routines.previous_minutes(routine_type))
+  end
+
+  test ".previous_distance" do
+    workout = workouts(:one)
+    user = workout.user
+    routine_type = routine_types(:treadmill)
+    attrs = {
+      routine_type: routine_type,
+      workout: workout,
+      set_number: 1,
+      minutes: 10,
+      distance: 0.5
+    }
+    prev = Routine.create!(attrs)
+
+    assert_equal(prev, user.routines.previous_distance(routine_type))
+  end
 end

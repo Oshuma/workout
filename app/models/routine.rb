@@ -8,6 +8,11 @@ class Routine < ApplicationRecord
   validate :ensure_at_least_one_metric
   validate :ensure_lbs_has_reps
 
+  scope :previous_lbs, ->(routine_type) { where(routine_type: routine_type).where('lbs IS NOT NULL').order(created_at: :asc).last }
+  scope :previous_reps, ->(routine_type) { where(routine_type: routine_type).where('reps IS NOT NULL').order(created_at: :asc).last }
+  scope :previous_minutes, ->(routine_type) { where(routine_type: routine_type).where('minutes IS NOT NULL').order(created_at: :asc).last }
+  scope :previous_distance, ->(routine_type) { where(routine_type: routine_type).where('distance IS NOT NULL').order(created_at: :asc).last }
+
   def full_title
     [
       workout.date,

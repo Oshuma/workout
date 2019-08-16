@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
   $('#routine_routine_type_id').on('change', function() {
     var opt = $(this).find(':selected');
     var metric = opt.data('metric');
+    var set_time = opt.data('set-time');
     var previous_lbs = opt.data('previous-lbs');
     var previous_reps = opt.data('previous-reps');
     var previous_minutes = opt.data('previous-minutes');
@@ -10,6 +11,7 @@ $(document).on('turbolinks:load', function() {
 
     // Show metric-relevant fields.
     $('.routine-field').addClass('d-none');
+    $('#set_timer_button').addClass('d-none');
     switch (metric) {
       case 'distance':
         $('#routine_distance').closest('.form-group').removeClass('d-none');
@@ -17,11 +19,18 @@ $(document).on('turbolinks:load', function() {
         break;
       case 'time':
         $('#routine_minutes').closest('.form-group').removeClass('d-none');
+        $('#set_timer_button').removeClass('d-none');
         break;
       case 'weight':
         $('#routine_lbs').closest('.form-group').removeClass('d-none');
         $('#routine_reps').closest('.form-group').removeClass('d-none');
         break;
+    }
+
+    if (set_time !== undefined) {
+      $('#set_timer_button').data('set-time', set_time);
+    } else {
+      $('#set-timer-value').removeData('set-time');
     }
 
     if (previous_lbs !== undefined) {

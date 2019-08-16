@@ -65,7 +65,7 @@ class RoutineTypesController < ApplicationController
   private
 
   def routine_type_params
-    params.require(:routine_type).permit(:name, :rest_time, :metric)
+    params.require(:routine_type).permit(:name, :rest_time, :set_time, :metric)
   end
 
   def set_routine_type

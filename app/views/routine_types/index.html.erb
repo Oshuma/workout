@@ -12,13 +12,14 @@
 <div id="new-routine-type-modal" class="modal fade" tabindex="-1" role="dialog"></div>
 
 <div class="table-responsive">
-  <table class="table table-hover">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col" style="width: 5%;"></th>
         <th scope="col">Name</th>
-        <th scope="col">Rest Time</th>
         <th scope="col">Routines</th>
+        <th scope="col">Rest Time</th>
+        <th scope="col">Set Time</th>
       </tr>
     </thead>
 
@@ -27,8 +28,9 @@
         <tr>
           <td><%= render 'actions', routine_type: routine_type %></td>
           <td><%= link_to(routine_type.name, routine_type) %></td>
-          <td><%= pluralize(routine_type.rest_time, 'second') %></td>
           <td><%= routine_type.routines.count %></td>
+          <td><%= pluralize(routine_type.rest_time, 'second') %></td>
+          <td><%= pluralize(routine_type.set_time, 'second') %></td>
         </tr>
       <% end %>
     </tbody>

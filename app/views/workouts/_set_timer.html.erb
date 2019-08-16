@@ -1,0 +1,53 @@
+<div id="set-timer" class="row mb-3 d-none">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h1 id="set-timer-value" class="text-center display-1"></h1>
+        <div class="text-center display-4">set</div>
+        <%= audio_tag('/audios/rest_timer.wav', id: 'set-timer-sound', autoplay: false, loop: false) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).on('turbolinks:load', function() {
+    function startSetTimer(setTimeValue) {
+      var setTimerSound = document.getElementById('set-timer-sound');
+      setTimerSound.addEventListener('ended', function(e) {
+        $('#set-timer').addClass('d-none');
+      });
+
+      var end = new Date();
+      end.setSeconds(end.getSeconds() + setTimeValue);
+
+      var setTimer = setInterval(function() {
+        var now = new Date().getTime();
+        var t = end - now;
+        var seconds = Math.floor((t % (1000 * 60)) / 1000);
+        if (seconds < 0) {
+          // Just a minor tweak, so the UI never shows -1
+          seconds = 0;
+        }
+        $('#set-timer-value').html(seconds);
+
+        if (t < 0) {
+          clearInterval(setTimer);
+          setTimerSound.play();
+        }
+      }, 1000);
+    }
+
+    $('#set_timer_button').on('click', function(e) {
+      var setTime = $(this).data('set-time');
+
+      $('#set-timer-value').html(setTime);
+      $('#set-timer').removeClass('d-none');
+
+      startSetTimer(setTime);
+
+      e.preventDefault();
+      return false;
+    });
+  });
+</script>

@@ -31,6 +31,7 @@ module ApplicationHelper
       opt << { 'data-metric' => routine_type.metric }
 
       opt << {
+        'data-set-time' => routine_type.set_time,
         'data-previous-lbs' => current_user.routines.previous_lbs(routine_type).try(:lbs),
         'data-previous-reps' => current_user.routines.previous_reps(routine_type).try(:reps),
         'data-previous-minutes' => current_user.routines.previous_minutes(routine_type).try(:minutes),

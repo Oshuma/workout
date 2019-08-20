@@ -28,11 +28,7 @@ jobs:
 
     - name: Setup System Dependencies
       run: |
-        apk add --update --no-cache \
-          build-base \
-          nodejs \
-          postgresql-dev \
-          tzdata
+        apk add --update --no-cache build-base nodejs postgresql-dev tzdata
 
     - name: Setup App Dependencies
       run: |

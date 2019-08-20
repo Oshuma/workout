@@ -3,9 +3,6 @@ on: push
 
 jobs:
   build:
-    container:
-      image: ruby:2.6-alpine
-
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04]
@@ -25,6 +22,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
 
     - name: Setup App Dependencies
       run: |

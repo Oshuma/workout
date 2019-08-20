@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04]
-        ruby: [2.6.x]
+        ruby: [2.6.3, 3.x]
 
     services:
       postgres:
@@ -31,7 +31,8 @@ jobs:
 
     - name: Setup Dependencies
       run: |
-        gem install bundler
+        gem install bundler --no-ri --no-rdoc
+        bundle update --ruby --bundler
         bundle install --jobs 4 --retry 3
 
     - name: Setup Database

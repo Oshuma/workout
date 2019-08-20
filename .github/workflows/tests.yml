@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04]
-        ruby: [latest, 2.6.x]
+        ruby: [2.6.x]
 
     services:
       postgres:

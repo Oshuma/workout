@@ -26,14 +26,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Setup System Dependencies
-      run: |
-        apk add --update --no-cache build-base nodejs postgresql-dev tzdata
-
     - name: Setup App Dependencies
       run: |
         gem install bundler
-        bundle update --ruby --bundler
         bundle install --jobs 4 --retry 3
 
     - name: Setup Database

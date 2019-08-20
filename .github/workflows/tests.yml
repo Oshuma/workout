@@ -3,6 +3,9 @@ on: push
 
 jobs:
   build:
+    container:
+      image: ruby:2.6-alpine
+
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04]
@@ -23,12 +26,15 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Ruby
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.6
+    - name: Setup System Dependencies
+      run: |
+        apk add --update --no-cache \
+          build-base \
+          nodejs \
+          postgresql-dev \
+          tzdata
 
-    - name: Setup Dependencies
+    - name: Setup App Dependencies
       run: |
         gem install bundler
         bundle update --ruby --bundler

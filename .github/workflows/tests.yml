@@ -24,12 +24,12 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Setup Ruby
-      run: sudo apt-get install ruby-full
+      run: sudo snap install ruby --classic
 
     - name: Setup Dependencies
       run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
+        sudo gem install bundler
+        sudo bundle install --jobs 4 --retry 3
 
     - name: Setup Database
       run: |

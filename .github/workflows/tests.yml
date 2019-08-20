@@ -23,13 +23,16 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Setup Ruby
-      run: sudo snap install ruby --classic
+    - name: Set up Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6
 
     - name: Setup Dependencies
       run: |
-        sudo gem install bundler
-        sudo bundle install --jobs 4 --retry 3
+        gem install bundler
+        bundle update --ruby --bundler
+        bundle install --jobs 4 --retry 3
 
     - name: Setup Database
       run: |

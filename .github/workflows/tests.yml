@@ -6,7 +6,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04]
-        ruby: [2.6, 3.x]
 
     services:
       postgres:
@@ -18,16 +17,16 @@ jobs:
           POSTGRES_DB: workout_test
           POSTGRES_PASSWORD: ""
 
-    name: Test ${{ matrix.ruby }} on ${{ matrix.os }}
+    name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Ruby ${{ matrix.ruby }}
+    - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby }}
+        ruby-version: 2.6
 
     - name: Setup Dependencies
       run: |

@@ -2,7 +2,10 @@ name: Run Tests
 on: push
 
 jobs:
-  build:
+  tests:
+    container:
+      image: docker://ruby:2.6-alpine
+
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04]
@@ -22,7 +25,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: docker://ruby:2.6-alpine
     # - uses: actions/setup-ruby@v1
     #   with:
     #     ruby-version: '2.6'

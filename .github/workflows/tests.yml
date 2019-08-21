@@ -22,13 +22,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6'
+    - uses: docker://ruby:2.6-alpine
+    # - uses: actions/setup-ruby@v1
+    #   with:
+    #     ruby-version: '2.6'
 
     - name: Setup System Dependencies
+      # run: |
+      #   sudo apt-get update && sudo apt-get install libpq-dev
       run: |
-        sudo apt-get install libpq-dev
+        apk add --update --no-cache build-base nodejs postgresql-dev
 
     - name: Setup App Dependencies
       run: |

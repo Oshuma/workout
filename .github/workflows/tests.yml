@@ -3,8 +3,7 @@ on: push
 
 jobs:
   tests:
-    container:
-      image: docker://ruby:2.6-alpine
+    container: ruby:2.6-alpine
 
     strategy:
       matrix:

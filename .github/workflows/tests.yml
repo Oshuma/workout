@@ -3,36 +3,18 @@ on: push
 
 jobs:
   tests:
-    container: ruby:2.6-alpine
-
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04]
-
-    services:
-      postgres:
-        image: postgres
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: workout_test
-          POSTGRES_PASSWORD: ""
 
     name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v1
-    # - uses: actions/setup-ruby@v1
-    #   with:
-    #     ruby-version: '2.6'
-
-    - name: Setup System Dependencies
-      # run: |
-      #   sudo apt-get update && sudo apt-get install libpq-dev
-      run: |
-        apk add --update --no-cache build-base nodejs postgresql-dev
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
 
     - name: Setup App Dependencies
       run: |

@@ -15,8 +15,6 @@ jobs:
         image: postgres:alpine
         ports:
           - 5432:5432
-        options: |
-          --hostname db
 
     steps:
     - uses: actions/checkout@v1
@@ -33,7 +31,7 @@ jobs:
     - name: Setup Database
       env:
         RAILS_ENV: test
-        # PGHOST: postgres
+        PGHOST: postgres
       run: |
         bundle exec rake db:create
         bundle exec rake db:schema:load
@@ -41,5 +39,5 @@ jobs:
     - name: Run Tests
       env:
         RAILS_ENV: test
-        # PGHOST: postgres
+        PGHOST: postgres
       run: bundle exec rails test

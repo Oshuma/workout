@@ -1,10 +1,6 @@
 name: Run Tests
 on: push
 
-env_vars: &env_vars
-  RAILS_ENV: test
-  PGHOST: localhost
-
 jobs:
   tests:
     strategy:
@@ -34,12 +30,14 @@ jobs:
 
     - name: Setup Database
       env:
-        <<: *env_vars
+        RAILS_ENV: test
+        PGHOST: localhost
       run: |
         bundle exec rake db:create
         bundle exec rake db:schema:load
 
     - name: Run Tests
       env:
-        <<: *env_vars
+        RAILS_ENV: test
+        PGHOST: localhost
       run: bundle exec rails test

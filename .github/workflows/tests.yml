@@ -15,8 +15,8 @@ jobs:
         image: postgres:alpine
         ports:
           - 5432:5432
-        options:
-          hostname: db
+        options: |
+          --hostname db
 
     steps:
     - uses: actions/checkout@v1

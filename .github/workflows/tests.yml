@@ -31,7 +31,7 @@ jobs:
     - name: Setup Database
       env:
         RAILS_ENV: test
-        PGHOST: localhost
+        PGHOST: postgres
       run: |
         bundle exec rake db:create
         bundle exec rake db:schema:load
@@ -39,5 +39,5 @@ jobs:
     - name: Run Tests
       env:
         RAILS_ENV: test
-        PGHOST: localhost
+        PGHOST: postgres
       run: bundle exec rails test

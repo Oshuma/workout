@@ -1,6 +1,10 @@
 name: Run Tests
 on: push
 
+env_vars: &env_vars
+  RAILS_ENV: test
+  PGHOST: localhost
+
 jobs:
   tests:
     strategy:
@@ -9,6 +13,12 @@ jobs:
 
     name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+
+    services:
+      postgres:
+        image: postgres:alpine
+        ports:
+          - 5432/tcp
 
     steps:
     - uses: actions/checkout@v1
@@ -23,9 +33,13 @@ jobs:
         bundle install --jobs 4 --retry 3
 
     - name: Setup Database
+      env:
+        <<: *env_vars
       run: |
         bundle exec rake db:create
         bundle exec rake db:schema:load
 
     - name: Run Tests
+      env:
+        <<: *env_vars
       run: bundle exec rails test

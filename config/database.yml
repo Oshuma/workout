@@ -61,8 +61,9 @@ development:
 test:
   <<: *default
   database: workout_test
-  host: <%= ENV.fetch('PGHOST') { 'db' } %>
-  username: <%= ENV.fetch('PGUSER') { 'postgres' } %>
+  host: <%= ENV.fetch('POSTGRES_HOST') { 'db' } %>
+  port: <%= ENV.fetch('POSTGRES_PORT') { 5432 } %>
+  username: <%= ENV.fetch('POSTGRES_USER') { 'postgres' } %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
